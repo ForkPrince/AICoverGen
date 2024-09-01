@@ -1,6 +1,7 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
 # Install Python
+RUN dnf install wget
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 RUN tar xzf Python-3.9.16.tgz
 RUN cd Python-3.9.16
