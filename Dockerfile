@@ -5,7 +5,7 @@ RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noar
 RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm -y
 
 # Update System
-RUN dnf update && dnf upgrade
+RUN dnf update
 
 # Install Packages
 RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-toolkit-12-3 -y
