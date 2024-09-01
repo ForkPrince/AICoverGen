@@ -8,7 +8,7 @@ RUN dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree
 RUN dnf update && dnf upgrade
 
 # Install Packages
-RUN dnf install wget build-essential ffmpeg sox cuda-toolkit-12-3 -y
+RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-toolkit-12-3 -y
 
 # Install Python
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
