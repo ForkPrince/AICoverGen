@@ -16,9 +16,7 @@ RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-tool
 # Install Python
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 RUN tar xzf Python-3.9.16.tgz
-RUN cd Python-3.9.16
-RUN ./configure --enable-optimizations
-RUN make altinstall
+RUN cd Python-3.9.16 && ./configure --enable-optimizations && make altinstall -y
 
 # Update PIP
 RUN python -m pip install --upgrade pip
