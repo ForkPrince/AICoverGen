@@ -1,7 +1,7 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
 # Install Python
-RUN dnf install wget
+RUN dnf install wget build-essential ffmpeg sox cuda-toolkit-12-3 -y
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 RUN tar xzf Python-3.9.16.tgz
 RUN cd Python-3.9.16
