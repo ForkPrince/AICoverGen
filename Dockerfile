@@ -1,27 +1,26 @@
-FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04
+FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/Los_Angeles
+# Install Python
+RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
+RUN tar xzf Python-3.9.16.tgz
+RUN cd Python-3.9.16
+RUN ./configure --enable-optimizations
+RUN make altinstall
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential python3.9 python3-pip python3-dev ffmpeg sox tzdata cuda-toolkit-12-3 && \
-    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive tzdata && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Update PIP
+RUN python -m pip install --upgrade pip
 
-RUN python3 -m pip install --upgrade pip
-
+# Move Files
 RUN mkdir /app
 WORKDIR /app
 COPY . .
 
-RUN pip3 install --no-cache-dir -r requirements.txt
-RUN pip3 install --no-cache-dir tensorboardX
+# Install Dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir tensorboardX
 
-RUN python3 /app/src/download_models.py
+RUN python /app/src/download_models.py
 
+# Expose and Run
 EXPOSE 8000
-
 CMD ["python3", "src/webui.py", "--listen-host", "0.0.0.0", "--listen-port", "8000", "--listen"]
