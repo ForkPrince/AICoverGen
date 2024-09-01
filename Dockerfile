@@ -1,11 +1,12 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
-# RPM Fusion
+# EPEL
 RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
 RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm -y
 
-# Update System
-RUN dnf update
+# RPM Fusion
+RUN dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm -y
+RUN dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 
 # Install Packages
 RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-toolkit-12-3 -y
