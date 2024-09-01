@@ -1,7 +1,16 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
-# Install Python
+# RPM Fusion
+RUN dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+RUN dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Update System
+RUN dnf update && dnf upgrade
+
+# Install Packages
 RUN dnf install wget build-essential ffmpeg sox cuda-toolkit-12-3 -y
+
+# Install Python
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
 RUN tar xzf Python-3.9.16.tgz
 RUN cd Python-3.9.16
