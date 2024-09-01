@@ -9,7 +9,7 @@ RUN dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-fre
 RUN dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 
 # Install Packages
-RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-toolkit-12-3 -y
+RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg-free sox cuda-toolkit-12-3 -y
 
 # Install Python
 RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
