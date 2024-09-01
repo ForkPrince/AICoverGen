@@ -1,8 +1,8 @@
 FROM nvidia/cuda:12.6.0-cudnn-runtime-rockylinux9
 
 # RPM Fusion
-RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+RUN dnf install https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm -y
 
 # Update System
 RUN dnf update && dnf upgrade
