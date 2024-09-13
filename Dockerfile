@@ -19,7 +19,7 @@ RUN tar xzf Python-3.9.16.tgz
 RUN cd Python-3.9.16 && ./configure --enable-optimizations && make install
 
 # Update PIP
-RUN python3 -m pip install pip == 24
+# RUN python3 -m pip install pip == 24
 
 # Move Files
 RUN mkdir /app
