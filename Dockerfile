@@ -10,11 +10,8 @@ RUN crb enable
 RUN dnf install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm -y
 RUN dnf install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 
-# Install Groups
-RUN dnf group install "C Development Tools and Libraries" "Development Tools"
-
 # Install Packages
-RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox python3.9 python3-pip cuda-toolkit-12-3 -y
+RUN dnf install @development-tools wget make automake gcc gcc-c++ kernel-devel ffmpeg sox python3.9 python3-pip cuda-toolkit-12-3 -y
 
 # Update PIP
 RUN pip install -I pip==24
