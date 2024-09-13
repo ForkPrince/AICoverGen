@@ -25,7 +25,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir tensorboardX
 
-RUN python /app/src/download_models.py
+RUN python3 /app/src/download_models.py
 
 # Expose and Run
 EXPOSE 8000
