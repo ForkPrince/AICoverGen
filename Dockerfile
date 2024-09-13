@@ -11,15 +11,10 @@ RUN dnf install https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(r
 RUN dnf install https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 
 # Install Packages
-RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox cuda-toolkit-12-3 -y
-
-# Install Python
-RUN wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz
-RUN tar xzf Python-3.9.16.tgz
-RUN cd Python-3.9.16 && ./configure --enable-optimizations && make install
+RUN dnf install wget make automake gcc gcc-c++ kernel-devel ffmpeg sox python3.9 cuda-toolkit-12-3 -y
 
 # Update PIP
-# RUN python3 -m pip install pip == 24
+RUN pip install -I pip==24
 
 # Move Files
 RUN mkdir /app
@@ -27,10 +22,10 @@ WORKDIR /app
 COPY . .
 
 # Install Dependencies
-RUN python3 -m pip install --no-cache-dir -r requirements.txt
-RUN python3 -m pip install --no-cache-dir tensorboardX
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir tensorboardX
 
-RUN python3 /app/src/download_models.py
+RUN python /app/src/download_models.py
 
 # Expose and Run
 EXPOSE 8000
