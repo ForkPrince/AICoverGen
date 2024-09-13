@@ -19,7 +19,7 @@ RUN tar xzf Python-3.9.16.tgz
 RUN cd Python-3.9.16 && ./configure --enable-optimizations && make install
 
 # Update PIP
-RUN pip install pip == 24
+RUN python3 -m pip install pip == 24
 
 # Move Files
 RUN mkdir /app
@@ -27,8 +27,8 @@ WORKDIR /app
 COPY . .
 
 # Install Dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir tensorboardX
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install --no-cache-dir tensorboardX
 
 RUN python3 /app/src/download_models.py
 
